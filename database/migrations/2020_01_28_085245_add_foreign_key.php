@@ -14,7 +14,11 @@ class AddForeignKey extends Migration
     public function up()
     {
         Schema::table('post_tag', function (Blueprint $table) {
-            
+            $table->bigInteger('post_id')->unsigned()->index();
+            $table -> foreign('post_id', 'post_tag_post') -> references('id')->on('posts');
+
+            $table->bigInteger('tag_id')->unsigned()->index();
+            $table->foreign('tag_id', 'tag_post_tag')->references('id')->on('tags');
         });
             
     }
@@ -27,6 +31,11 @@ class AddForeignKey extends Migration
     public function down()
     {
         Schema::table('post_tag', function (Blueprint $table) {
+            $table->dropForeign('post_tag_post');
+            $table->dropForeign('tag_post_tag');
+
+            $table->dropColumn('post_id');
+            $table->dropColumn('tag_id');
         });
 
     }

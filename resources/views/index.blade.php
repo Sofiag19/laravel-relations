@@ -7,7 +7,7 @@
         <h1>Posts</h1>
     </div>
     <div class="col-12 text-right">
-        <a class="btn-primary btn right create" href="{{ route('posts.create') }}">Aggiungi Nuovo</a>
+        <a class="btn-primary btn right create" href="">Aggiungi Nuovo</a>
     </div>
     <div class="col-12">
         <table class="table">
@@ -29,10 +29,10 @@
                     <td>{{ $post->category->title }}</td>
                     <td>{{ \Illuminate\Support\Str::limit($post->postInformation->description, $limit = 30, $end = '...') }}</td>
                     <td>
-                        <a class="btn btn-success" href="{{ route('posts.edit', $post) }}">Aggiorna</a>
+                        <a class="btn btn-success" href="">Aggiorna</a>
                     </td>
                     <td>
-                        <form action="{{ route('posts.destroy', $post) }}" method="post">
+                        <form action="" method="post">
                             @method('delete')
                             @csrf
                             <input class="btn btn-danger" value="Elimina" type="submit">
@@ -45,7 +45,7 @@
     </div>
 
     <div class="col-12">
-        {{ $posts->links() }}
+        {{-- {{ $posts->links() }} --}}
     </div>
 </div>
 
